@@ -11,6 +11,13 @@ import { IBug } from '../models/IBug';
 export class BugTrackerComponent{
 	bugs : IBug[] = [];
 
+	constructor(){
+		this.addNew('Server communication failure');
+		this.addNew('Data validation error');
+		this.addNew('User actions not recognized');
+		this.addNew('Application not responding');
+	}
+
 	addNew(bugName : string){
 		let newBug : IBug = {
 			name : bugName,

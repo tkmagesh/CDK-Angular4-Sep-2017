@@ -5,10 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BugTrackerComponent } from './bugTracker/bugTracker.component';
 
+import { TrimTextPipe } from './pipes/trimText.pipe';
+import { SortPipe } from './pipes/sort.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
-    BugTrackerComponent
+    BugTrackerComponent,
+    TrimTextPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
