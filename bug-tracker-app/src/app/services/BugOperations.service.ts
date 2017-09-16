@@ -7,7 +7,8 @@ export class BugOperationsService{
 		let newBug : IBug = {
 			id : id,
 			name : bugName,
-			isClosed : false
+			isClosed : false,
+			createdAt : Date()
 		};
 		return newBug;
 	}

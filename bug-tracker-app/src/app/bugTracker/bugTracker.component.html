@@ -7,8 +7,10 @@
 	<section class="sort" >
 		<label for="">Order By :</label>
 		<select [(ngModel)]="sortBugBy">
+			<option value="id">[Default]</option>
 			<option value="name">Name</option>
 			<option value="isClosed">Status</option>
+			<option value="createdAt">Created At</option>
 		</select>
 		<label for="">Descending ? :</label>
 		<input type="checkbox" [(ngModel)]="sortBugDescending">
@@ -22,7 +24,7 @@
 		<ol id="olBugList">
 			<li *ngFor="let bug of ( bugs | sort:sortBugBy:sortBugDescending ) ">
 				<span class="bugname" (click)="toggle(bug)" [ngClass]="{closed : bug.isClosed}">{{bug.name | trimText:40}}</span>
-				<div class="datetime">[Created At]</div>
+				<div class="datetime">{{bug.createdAt | elapsed}}</div>
 			</li>
 			
 		</ol>
