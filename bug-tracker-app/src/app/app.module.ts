@@ -10,6 +10,7 @@ import { SortPipe } from './pipes/sort.pipe';
 import { ClosedCountPipe } from './pipes/closedCount.pipe';
 
 import { BugOperationsService } from './services/BugOperations.service';
+import { BugStorageService } from './services/BugStorage.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BugOperationsService } from './services/BugOperations.service';
     FormsModule
   ],
   providers: [
-    BugOperationsService
+    BugOperationsService,
+    BugStorageService
   ],
   bootstrap: [AppComponent]
 })
