@@ -11,16 +11,16 @@ import { BugStorageService } from '../services/BugStorage.service';
 export class BugTrackerComponent{
 	bugs : IBug[] = [];
 
-	newBugName : string = '';
+	
 
 	constructor(private bugStorage : BugStorageService){
 		this.bugs = this.bugStorage.getAll();
 	}
 
-	addNew(){
-		let newBug = this.bugStorage.addNew(this.newBugName);
-		this.bugs = [...this.bugs, newBug];
+	newBugCreated(bug : IBug){
+		this.bugs = [...this.bugs, bug];
 	}
+	
 	toggle(bugToToggle : IBug){
 		let toggledBug = this.bugStorage.toggle(bugToToggle);
 		this.bugs = this.bugs.map(bug => bug === bugToToggle ?  toggledBug : bug);
