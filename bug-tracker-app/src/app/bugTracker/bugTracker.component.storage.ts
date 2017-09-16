@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IBug } from '../models/IBug';
 import { BugStorageService } from '../services/BugStorage.service';
-import { BugServerService } from '../services/BugServer.service';
+
 
 @Component({
 	selector : 'bug-tracker',
@@ -13,10 +13,8 @@ export class BugTrackerComponent{
 
 	
 
-	constructor(private bugStorage : BugStorageService, private bugServer : BugServerService){
-		this.bugServer
-			.getAll()
-			.subscribe(bugs => this.bugs = bugs);
+	constructor(private bugStorage : BugStorageService){
+		this.bugs = this.bugStorage.getAll();
 	}
 
 	newBugCreated(bug : IBug){
@@ -24,15 +22,13 @@ export class BugTrackerComponent{
 	}
 	
 	toggle(bugToToggle : IBug){
-		this.bugServer
-			.toggle(bugToToggle)
-			.subscribe(toggledBug => this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ?  toggledBug : bug));
-		
+		let toggledBug = this.bugStorage.toggle(bugToToggle);
+		this.bugs = this.bugs.map(bug => bug === bugToToggle ?  toggledBug : bug);
 	}
 	removeClosed(){
 		this.bugs
 			.filter(bug => bug.isClosed)
-			.forEach(bug => this.bugServer.remove(bug).subscribe( _ => {}));
+			.forEach(bug => this.bugStorage.remove(bug));
 
 		this.bugs = this.bugs.filter(bug => !bug.isClosed);
 	}
